@@ -42,7 +42,7 @@ class WeatherListItem extends StatelessWidget {
       return isDark ? Colors.amber.shade300 : Colors.amber.shade400;
     } else if (code.startsWith('02') || code.startsWith('03') || code.startsWith('04')) {
       // Clouds
-      final base = isDark ? Colors.grey.shade200 : Colors.white;
+      final base = isDark ? Colors.grey.shade200 : Colors.grey.shade700;
       return isSelected ? Theme.of(context).colorScheme.onPrimaryContainer : base;
     } else if (code.startsWith('09') || code.startsWith('10')) {
       return isDark ? Colors.white : Colors.lightBlueAccent; // Rain
