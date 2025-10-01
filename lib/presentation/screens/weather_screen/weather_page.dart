@@ -232,7 +232,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       child: SingleChildScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         child: SizedBox(
-                          height: MediaQuery.of(context).size.height - 200,
+                          height: MediaQuery.of(context).size.height - 120,
                           child: WeatherContent(
                             weather: state.weather,
                             selectedDayIndex: state.selectedDayIndex,
@@ -251,6 +251,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 },
               ),
             ),
+            const SizedBox(height: 25),
           ],
         ),
       ),

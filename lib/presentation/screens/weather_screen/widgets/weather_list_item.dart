@@ -61,60 +61,63 @@ class WeatherListItem extends StatelessWidget {
     final dayAbbr = DateFormat('EEE').format(weather.date);
     final theme = Theme.of(context);
 
-    return Material(
-      color: isSelected ? theme.colorScheme.primaryContainer : theme.colorScheme.surface,
-      borderRadius: BorderRadius.circular(16),
-      elevation: isSelected ? 8 : 2,
-      child: InkWell(
-        onTap: onTap,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Material(
+        color: isSelected ? theme.colorScheme.primaryContainer : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        child: Container(
-          width: 100,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                dayAbbr,
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  color: isSelected ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurface,
+        elevation: isSelected ? 8 : 2,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            width: 100,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  dayAbbr,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    color: isSelected ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurface,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Center(
-                  child: CachedNetworkImage(
-                    imageUrl: '${ApiConstants.iconBaseUrl}/${weather.weatherIcon}@2x.png',
-                    imageBuilder: (context, imageProvider) => Image(
-                      image: imageProvider,
-                      width: 40,
-                      height: 40,
-                      color: _getIconTintColor(context),
-                      colorBlendMode: BlendMode.srcIn,
-                    ),
-                    placeholder: (context, url) => const SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: Center(
-                        child: CircularProgressIndicator(strokeWidth: 2),
+                Expanded(
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl: '${ApiConstants.iconBaseUrl}/${weather.weatherIcon}@2x.png',
+                      imageBuilder: (context, imageProvider) => Image(
+                        image: imageProvider,
+                        width: 40,
+                        height: 40,
+                        color: _getIconTintColor(context),
+                        colorBlendMode: BlendMode.srcIn,
                       ),
-                    ),
-                    errorWidget: (context, url, error) => Icon(
-                      Icons.cloud,
-                      size: 40,
-                      color: isSelected ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurface,
+                      placeholder: (context, url) => const SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.cloud,
+                        size: 40,
+                        color: isSelected ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurface,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                '${_convertTemperature(weather.temperature).round()}${_getTemperatureUnit()}',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: isSelected ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurface,
+                Text(
+                  '${_convertTemperature(weather.temperature).round()}${_getTemperatureUnit()}',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: isSelected ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurface,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

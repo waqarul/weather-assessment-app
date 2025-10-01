@@ -90,6 +90,7 @@ class WeatherDetailCard extends StatelessWidget {
         ),
       ),
       child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -113,7 +114,7 @@ class WeatherDetailCard extends StatelessWidget {
                 color: theme.colorScheme.onPrimary.withOpacity(0.7),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 14),
             CachedNetworkImage(
               imageUrl: '${ApiConstants.iconBaseUrl}/${weather.weatherIcon}@4x.png',
               imageBuilder: (context, imageProvider) => Image(
@@ -132,7 +133,7 @@ class WeatherDetailCard extends StatelessWidget {
                 color: theme.colorScheme.onPrimary,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 5),
             Text(
               weather.weatherCondition,
               style: theme.textTheme.headlineSmall?.copyWith(
@@ -146,7 +147,7 @@ class WeatherDetailCard extends StatelessWidget {
                 color: theme.colorScheme.onPrimary.withOpacity(0.7),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 18),
             Text(
               '${_convertTemperature(weather.temperature).round()}${_getTemperatureUnit()}',
               style: theme.textTheme.displayLarge?.copyWith(
@@ -154,7 +155,7 @@ class WeatherDetailCard extends StatelessWidget {
                 color: theme.colorScheme.onPrimary,
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 18),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -186,6 +187,7 @@ class WeatherDetailCard extends StatelessWidget {
 
   Widget _buildInfoColumn(IconData icon, String label, String value, Color textColor) {
     return Column(
+
       children: [
         Icon(
           icon,
